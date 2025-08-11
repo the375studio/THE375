@@ -89,7 +89,7 @@
         .social-icon {
             width: 40px;
             height: 40px;
-            background: #444;
+            background: #F7CDFF;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -97,13 +97,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            color: white;
+            color: #333;
             font-size: 18px;
         }
         
         .social-icon:hover {
             transform: scale(1.1);
-            background: #555;
+            background: #f0b8ff;
         }
         
         /* Цветные полоски справа */
@@ -146,53 +146,99 @@
             color: #888;
         }
         
-        /* Адаптивность */
+        /* Адаптивность для мобильных */
         @media (max-width: 768px) {
-            .color-strips {
-                width: 260px;
-            }
-            
-            .strip {
-                width: 52px;
+            body {
+                flex-direction: column;
             }
             
             .main-content {
-                max-width: calc(100vw - 260px);
+                max-width: 100vw;
                 padding: 20px;
+                min-height: calc(100vh - 250px);
             }
             
-            .strip-text {
-                font-size: 12px;
+            .logo {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 40px;
+                flex-direction: row;
+            }
+            
+            .hero-section {
+                text-align: center;
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+            
+            .main-title {
+                font-size: clamp(24px, 6vw, 32px);
+                margin-bottom: 30px;
             }
             
             .cta-section {
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            
+            .social-icons {
+                margin: 0;
+            }
+            
+            .color-strips {
+                position: relative;
+                width: 100vw;
+                height: 250px;
                 flex-direction: column;
-                align-items: flex-start;
+                bottom: auto;
+                right: auto;
+            }
+            
+            .strip {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .strip-text {
+                transform: none;
+                font-size: 16px;
+                font-weight: 700;
+                color: #333;
+            }
+            
+            .footer {
+                text-align: center;
+                margin-top: 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="main-content">
-        <div class="logo">THE375</div>
+        <div class="logo">
+            <span>THE375</span>
+            <div class="social-icons">
+                <!-- Instagram иконка - замените src на ваш файл instagram-icon.png -->
+                <a href="https://instagram.com/the375" target="_blank" class="social-icon" id="instagram-icon">
+                    📷
+                </a>
+                
+                <!-- Email иконка - замените src на ваш файл email-icon.png -->
+                <a href="mailto:hello@the375.com" class="social-icon" id="email-icon">
+                    ✉️
+                </a>
+            </div>
+        </div>
         
         <div class="hero-section">
-            <h1 class="main-title">THE375 — creative design studio for your unique projects.</h1>
+            <h1 class="main-title">THE375 — creative design studio and personalized typography for your unique projects.</h1>
             
             <div class="cta-section">
                 <button class="cta-button" onclick="startProject()">Let's discuss your project?</button>
-                
-                <div class="social-icons">
-                    <!-- Instagram иконка - замените src на ваш файл instagram-icon.png -->
-                    <a href="https://instagram.com/the375studio" target="_blank" class="social-icon" id="instagram-icon">
-                        📷
-                    </a>
-                    
-                    <!-- Email иконка - замените src на ваш файл email-icon.png -->
-                    <a href="mailto:the375studio@gmail.com" class="social-icon" id="email-icon">
-                        ✉️
-                    </a>
-                </div>
             </div>
         </div>
         
@@ -222,7 +268,7 @@
 
     <script>
         function startProject() {
-            alert('Great! Contact us via Instagram or email to discuss your project.');
+            alert('Отлично! Свяжитесь с нами через Instagram или email для обсуждения вашего проекта.');
         }
 
         // Можно добавить дополнительные функции для иконок
