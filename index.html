@@ -3,99 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE375 — Design Studio & Print Shop</title>
+    <title>THE375 - Creative Design Studio</title>
     <style>
-        /* --- Reset & Base --- */
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
-            background-color: #0e0e0e;
-            color: #fff;
-            font-family: "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.5;
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #2a2a2a;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            position: relative;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 40px;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            justify-content: space-between;
+            max-width: calc(100vw - 325px);
         }
-
-        /* --- Layout --- */
-        header {
-            padding: 80px 20px 40px;
-            text-align: center;
-        }
-        h1 {
-            font-size: 54px;
+        
+        .logo {
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: 2px;
+            margin-bottom: 20px;
         }
-        p.subtitle {
-            font-size: 18px;
-            color: #aaa;
-            margin-top: 10px;
-            letter-spacing: 1px;
-        }
-
-        main {
+        
+        .hero-section {
             flex: 1;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            max-width: 600px;
+        }
+        
+        .main-title {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+        
+        .cta-section {
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #444;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        main p {
-            font-size: 20px;
-            color: #ccc;
-            margin-top: 20px;
-        }
-
-        /* --- Button --- */
-        a.button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 14px 28px;
-            background-color: #fff;
-            color: #000;
+            cursor: pointer;
+            transition: all 0.3s ease;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 3px;
-            transition: background-color 0.3s;
+            color: white;
+            font-size: 18px;
         }
-        a.button:hover {
-            background-color: #f5f5f5;
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+            background: #555;
         }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 20px;
+        
+        /* Цветные полоски справа */
+        .color-strips {
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: 100vh;
+            width: 325px;
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .strip {
+            width: 65px;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .strip-1 { background: #F7CDFF; }
+        .strip-2 { background: #B2D9FF; }
+        .strip-3 { background: #FFBB33; }
+        .strip-4 { background: #6BBC6F; }
+        .strip-5 { background: #E54545; }
+        
+        .strip-text {
+            transform: rotate(-90deg);
             font-size: 14px;
-            color: #555;
+            color: #333;
+            font-weight: 600;
+            white-space: nowrap;
+            text-align: center;
+        }
+        
+        .footer {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .color-strips {
+                width: 260px;
+            }
+            
+            .strip {
+                width: 52px;
+            }
+            
+            .main-content {
+                max-width: calc(100vw - 260px);
+                padding: 20px;
+            }
+            
+            .strip-text {
+                font-size: 12px;
+            }
+            
+            .cta-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="main-content">
+        <div class="logo">THE375</div>
+        
+        <div class="hero-section">
+            <h1 class="main-title">THE375 — creative design studio and personalized typography for your unique projects.</h1>
+            
+            <div class="cta-section">
+                <button class="cta-button" onclick="startProject()">Let's discuss your project?</button>
+                
+                <div class="social-icons">
+                    <!-- Instagram иконка - замените src на ваш файл instagram-icon.png -->
+                    <a href="https://instagram.com/the375" target="_blank" class="social-icon" id="instagram-icon">
+                        📷
+                    </a>
+                    
+                    <!-- Email иконка - замените src на ваш файл email-icon.png -->
+                    <a href="mailto:the375studio@gmail.com" class="social-icon" id="email-icon">
+                        ✉️
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2025 THE375. All rights reserved.
+        </div>
+    </div>
+    
+    <!-- Цветные полоски -->
+    <div class="color-strips">
+        <div class="strip strip-1">
+            <div class="strip-text">Branding</div>
+        </div>
+        <div class="strip strip-2">
+            <div class="strip-text">Posters & Print Art</div>
+        </div>
+        <div class="strip strip-3">
+            <div class="strip-text">Print</div>
+        </div>
+        <div class="strip strip-4">
+            <div class="strip-text">Packaging</div>
+        </div>
+        <div class="strip strip-5">
+            <div class="strip-text">Digital Design</div>
+        </div>
+    </div>
 
-    <header>
-        <h1>THE375</h1>
-        <p class="subtitle">Design Studio & Print Shop</p>
-    </header>
+    <script>
+        function startProject() {
+            alert('Great! Contact us via Instagram or email to discuss your project.');
+        }
 
-    <main>
-        <p>We create distinctive brand identities, printed materials, and visual concepts that combine design precision with craftsmanship.</p>
-        <a href="mailto:the375studio@gmail.com" class="button">Get in touch</a>
-    </main>
+        // Можно добавить дополнительные функции для иконок
+        document.getElementById('instagram-icon').addEventListener('click', function(e) {
+            console.log('Переход в Instagram');
+        });
 
-    <footer>
-        &copy; 2025 THE375. All rights reserved.
-    </footer>
-
+        document.getElementById('email-icon').addEventListener('click', function(e) {
+            console.log('Открытие почтового клиента');
+        });
+    </script>
 </body>
 </html>
-
