@@ -36,7 +36,6 @@
         .logo {
             font-size: 24px;
             font-weight: 700;
-            margin-bottom: 20px;
             cursor: pointer;
             transition: opacity 0.3s ease;
             position: fixed;
@@ -52,11 +51,11 @@
         .social-icons {
             position: fixed;
             top: 40px;
-            right: 365px;
+            left: 160px;
             display: flex;
             gap: 15px;
             align-items: center;
-            z-index: 100;
+            z-index: 20;
         }
         
         .hero-section {
@@ -68,7 +67,7 @@
         }
         
         .main-title {
-            font-size: clamp(36px, 5vw, 64px);
+            font-size: clamp(32px, 42w, 48px);
             font-weight: 400;
             line-height: 1.1;
             margin-bottom: 40px;
@@ -103,7 +102,7 @@
         }
         
         .social-icons {
-            display: flex;
+            display: fixed;
             gap: 15px;
             align-items: center;
         }
@@ -120,7 +119,7 @@
             transition: all 0.3s ease;
             text-decoration: none;
             color: #333;
-            font-size: 18px;
+            font-size: 16px;
         }
         
         .social-icon:hover {
@@ -237,7 +236,7 @@
             }
             
             .main-title {
-                font-size: clamp(24px, 6vw, 32px);
+                font-size: clamp(24px, 3vw, 32px);
                 margin-bottom: 30px;
             }
             
@@ -313,8 +312,8 @@
     <!-- Фиксированный логотип и иконки -->
     <div class="logo" onclick="goHome()">THE375</div>
     <div class="social-icons">
-        <a href="https://instagram.com/the375studio" target="_blank" class="social-icon" id="instagram-icon">📷</a>
-        <a href="mailto:the375studio@gmail.com" class="social-icon" id="email-icon">✉️</a>
+        <a href="https://instagram.com/the375" target="_blank" class="social-icon" id="instagram-icon">📷</a>
+        <a href="mailto:hello@the375.com" class="social-icon" id="email-icon">✉️</a>
     </div>
     
     <!-- Цветные полоски -->
@@ -374,7 +373,7 @@
 
     <script>
         function startProject() {
-            alert('Great! Contact us via Instagram or email to discuss your project.');
+            alert('Отлично! Свяжитесь с нами через Instagram или email для обсуждения вашего проекта.');
         }
 
         function openStrip(stripNumber) {
