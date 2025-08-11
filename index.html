@@ -29,12 +29,34 @@
             flex-direction: column;
             justify-content: space-between;
             max-width: calc(100vw - 325px);
+            position: relative;
+            z-index: 20;
         }
         
         .logo {
             font-size: 24px;
             font-weight: 700;
             margin-bottom: 20px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 100;
+        }
+        
+        .logo:hover {
+            opacity: 0.8;
+        }
+        
+        .social-icons {
+            position: fixed;
+            top: 40px;
+            right: 365px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            z-index: 100;
         }
         
         .hero-section {
@@ -89,7 +111,7 @@
         .social-icon {
             width: 40px;
             height: 40px;
-            background: #F7CDFF;
+            background: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -103,7 +125,7 @@
         
         .social-icon:hover {
             transform: scale(1.1);
-            background: #f0b8ff;
+            background: #f5f5f5;
         }
         
         /* Цветные полоски справа */
@@ -115,6 +137,7 @@
             width: 325px;
             display: flex;
             flex-direction: row;
+            z-index: 50;
         }
         
         .strip {
@@ -124,6 +147,52 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+        
+        .strip:hover {
+            transform: translateX(-5px);
+        }
+        
+        /* Развернутые полоски */
+        .strip-overlay {
+            position: fixed;
+            top: 0;
+            right: -100vw;
+            width: 100vw;
+            height: 100vh;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: right 0.6s ease;
+            padding: 60px 400px 60px 60px;
+            box-sizing: border-box;
+        }
+        
+        .strip-overlay.active {
+            right: 0;
+        }
+        
+        .overlay-content {
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .overlay-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .overlay-description {
+            font-size: clamp(18px, 3vw, 24px);
+            line-height: 1.6;
+            color: #333;
+            font-weight: 400;
         }
         
         .strip-1 { background: #F7CDFF; }
@@ -156,20 +225,15 @@
                 max-width: 100vw;
                 padding: 20px;
                 min-height: calc(100vh - 250px);
-            }
-            
-            .logo {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 40px;
-                flex-direction: row;
+                position: relative;
+                z-index: 20;
             }
             
             .hero-section {
                 text-align: center;
                 max-width: 100%;
                 margin-bottom: 40px;
+                margin-top: 80px;
             }
             
             .main-title {
@@ -182,10 +246,6 @@
                 margin-bottom: 20px;
             }
             
-            .social-icons {
-                margin: 0;
-            }
-            
             .color-strips {
                 position: relative;
                 width: 100vw;
@@ -193,6 +253,7 @@
                 flex-direction: column;
                 bottom: auto;
                 right: auto;
+                z-index: 50;
             }
             
             .strip {
@@ -201,6 +262,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                z-index: 50;
             }
             
             .strip-text {
@@ -214,26 +276,27 @@
                 text-align: center;
                 margin-top: 20px;
             }
+            
+            /* Мобильная анимация - снизу вверх */
+            .strip-overlay {
+                top: 100vh;
+                right: 0;
+                width: 100vw;
+                height: 100vh;
+                padding: 60px 20px 270px 20px;
+                transition: top 0.6s ease;
+                z-index: 30;
+            }
+            
+            .strip-overlay.active {
+                top: 0;
+                right: 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="main-content">
-        <div class="logo">
-            <span>THE375</span>
-            <div class="social-icons">
-                <!-- Instagram иконка - замените src на ваш файл instagram-icon.png -->
-                <a href="https://instagram.com/the375studio" target="_blank" class="social-icon" id="instagram-icon">
-                    📷
-                </a>
-                
-                <!-- Email иконка - замените src на ваш файл email-icon.png -->
-                <a href="mailto:the375studio@gmail.com" class="social-icon" id="email-icon">
-                    ✉️
-                </a>
-            </div>
-        </div>
-        
         <div class="hero-section">
             <h1 class="main-title">THE375 — creative design studio and personalized typography for your unique projects.</h1>
             
@@ -246,29 +309,88 @@
             © 2025 THE375. All rights reserved.
         </div>
     </div>
+
+    <!-- Фиксированный логотип и иконки -->
+    <div class="logo" onclick="goHome()">THE375</div>
+    <div class="social-icons">
+        <a href="https://instagram.com/the375studio" target="_blank" class="social-icon" id="instagram-icon">📷</a>
+        <a href="mailto:the375studio@gmail.com" class="social-icon" id="email-icon">✉️</a>
+    </div>
     
     <!-- Цветные полоски -->
     <div class="color-strips">
-        <div class="strip strip-1">
+        <div class="strip strip-1" onclick="openStrip(1)">
             <div class="strip-text">Branding</div>
         </div>
-        <div class="strip strip-2">
+        <div class="strip strip-2" onclick="openStrip(2)">
             <div class="strip-text">Posters & Print Art</div>
         </div>
-        <div class="strip strip-3">
+        <div class="strip strip-3" onclick="openStrip(3)">
             <div class="strip-text">Print</div>
         </div>
-        <div class="strip strip-4">
+        <div class="strip strip-4" onclick="openStrip(4)">
             <div class="strip-text">Packaging</div>
         </div>
-        <div class="strip strip-5">
+        <div class="strip strip-5" onclick="openStrip(5)">
             <div class="strip-text">Digital Design</div>
+        </div>
+    </div>
+
+    <!-- Развернутые полоски -->
+    <div class="strip-overlay" id="overlay-1" style="background: #F7CDFF;">
+        <div class="overlay-content">
+            <h2 class="overlay-title">Branding</h2>
+            <p class="overlay-description">Logos, visual identity, and design systems that make your brand stand out and stay memorable.</p>
+        </div>
+    </div>
+    
+    <div class="strip-overlay" id="overlay-2" style="background: #B2D9FF;">
+        <div class="overlay-content">
+            <h2 class="overlay-title">Posters & Print Art</h2>
+            <p class="overlay-description">Custom posters and art prints that work as both communication tools and pieces of art.</p>
+        </div>
+    </div>
+    
+    <div class="strip-overlay" id="overlay-3" style="background: #FFBB33;">
+        <div class="overlay-content">
+            <h2 class="overlay-title">Print</h2>
+            <p class="overlay-description">Business cards, catalogs, postcards, and more to strengthen and complete your visual presence.</p>
+        </div>
+    </div>
+    
+    <div class="strip-overlay" id="overlay-4" style="background: #6BBC6F;">
+        <div class="overlay-content">
+            <h2 class="overlay-title">Packaging</h2>
+            <p class="overlay-description">Boxes, labels, and wraps that turn your product into an experience.</p>
+        </div>
+    </div>
+    
+    <div class="strip-overlay" id="overlay-5" style="background: #E54545;">
+        <div class="overlay-content">
+            <h2 class="overlay-title">Digital Design</h2>
+            <p class="overlay-description">Layouts for websites, social media, and presentations with a focus on aesthetics and meaning.</p>
         </div>
     </div>
 
     <script>
         function startProject() {
             alert('Great! Contact us via Instagram or email to discuss your project.');
+        }
+
+        function openStrip(stripNumber) {
+            // Скрыть все активные полоски
+            const overlays = document.querySelectorAll('.strip-overlay');
+            overlays.forEach(overlay => overlay.classList.remove('active'));
+            
+            // Показать выбранную полоску
+            const selectedOverlay = document.getElementById(`overlay-${stripNumber}`);
+            selectedOverlay.classList.add('active');
+        }
+
+        function goHome() {
+            // Скрыть все активные полоски и вернуться на главный экран
+            const overlays = document.querySelectorAll('.strip-overlay');
+            overlays.forEach(overlay => overlay.classList.remove('active'));
         }
 
         // Можно добавить дополнительные функции для иконок
