@@ -1,6 +1,5 @@
 const views = [...document.querySelectorAll("[data-view]")];
 const navLinks = [...document.querySelectorAll("[data-route]")];
-const routeButtons = [...document.querySelectorAll("button[data-route]")];
 const serviceItems = [...document.querySelectorAll(".service-item")];
 const footer = document.querySelector(".site-footer");
 
@@ -26,7 +25,7 @@ function setRoute(route) {
     }
   });
 
-  footer.hidden = route === "lost";
+  footer.hidden = false;
   resetScroll();
 }
 
@@ -41,14 +40,6 @@ navLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     event.preventDefault();
     const route = link.dataset.route;
-    history.pushState(null, "", `#${route}`);
-    setRoute(route);
-  });
-});
-
-routeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const route = button.dataset.route;
     history.pushState(null, "", `#${route}`);
     setRoute(route);
   });
