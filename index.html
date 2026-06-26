@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>THE375</title>
-    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="styles.css?v=11">
   </head>
   <body>
     <main class="site-shell">
       <header class="site-header">
         <a class="brand" href="#home" aria-label="THE375 home">THE375</a>
-        <button class="plus-button" type="button" aria-label="Open menu">[ + ]</button>
+        <button class="plus-button" type="button" data-route="lost" aria-label="Open 404 page">[ + ]</button>
         <p class="language-note">
           МЫ РАЗМАЎЛЯЕМ ПА-БЕЛАРУСКУ<br>
           MÓWIMY PO POLSKU<br>
@@ -44,47 +44,47 @@
       <section class="view view-services" data-view="services" aria-labelledby="services-title">
         <h1 id="services-title" class="visually-hidden">Services</h1>
         <div class="services-list" aria-label="Services list">
-          <div class="service-name is-active">BRANDING</div>
-          <div class="service-number is-active">01</div>
-          <div class="service-text is-active">
-            Not about pretty graphics. About the impression people<br>
-            are left with after discovering your company.
-          </div>
+          <details class="service-item">
+            <summary>BRANDING</summary>
+            <div class="service-panel">
+              <p>Not about pretty graphics. About the impression people are left with after discovering your company.</p>
+            </div>
+          </details>
 
-          <div class="service-name">PACKAGING</div>
-          <div class="service-number">02</div>
-          <div class="service-text">
-            Helping products look like someone<br>
-            genuinely cared about them.
-          </div>
+          <details class="service-item">
+            <summary>PACKAGING</summary>
+            <div class="service-panel">
+              <p>Helping products look like someone genuinely cared about them.</p>
+            </div>
+          </details>
 
-          <div class="service-name">IDENTITY</div>
-          <div class="service-number">03</div>
-          <div class="service-text">
-            Logos, type, colours and the details that help<br>
-            a brand feel consistent wherever it appears.
-          </div>
+          <details class="service-item">
+            <summary>IDENTITY</summary>
+            <div class="service-panel">
+              <p>Logos, type, colours and the details that help a brand feel consistent wherever it appears.</p>
+            </div>
+          </details>
 
-          <div class="service-name">STRATEGY</div>
-          <div class="service-number">04</div>
-          <div class="service-text">
-            Good design answers questions. Strategy helps<br>
-            figure out which questions matter in the first place.
-          </div>
+          <details class="service-item">
+            <summary>STRATEGY</summary>
+            <div class="service-panel">
+              <p>Good design answers questions. Strategy helps figure out which questions matter in the first place.</p>
+            </div>
+          </details>
 
-          <div class="service-name">CREATIVE</div>
-          <div class="service-number">05</div>
-          <div class="service-text">
-            Finding ideas that work not because they're trendy,<br>
-            but because they're hard to forget.
-          </div>
+          <details class="service-item">
+            <summary>CREATIVE</summary>
+            <div class="service-panel">
+              <p>Finding ideas that work not because they're trendy, but because they're hard to forget.</p>
+            </div>
+          </details>
 
-          <div class="service-name">POSTERS</div>
-          <div class="service-number">06</div>
-          <div class="service-text">
-            When you need to say a lot with<br>
-            very little time and attention.
-          </div>
+          <details class="service-item">
+            <summary>POSTERS</summary>
+            <div class="service-panel">
+              <p>When you need to say a lot with very little time and attention.</p>
+            </div>
+          </details>
         </div>
       </section>
 
@@ -140,17 +140,17 @@
         <div class="contacts-layout">
           <div class="contact-list">
             <a class="contact-row" href="#" aria-label="Telegram coming soon">
-              <span class="contact-icon telegram" aria-hidden="true"></span>
+              <img class="contact-icon" src="assets/icons/telegram_svg.svg" alt="">
               <span>Telegram</span>
               <span>coming soon</span>
             </a>
             <a class="contact-row" href="mailto:the375studio@gmail.com">
-              <span class="contact-icon mail" aria-hidden="true"></span>
+              <img class="contact-icon" src="assets/icons/mail_svg.svg" alt="">
               <span>Mail</span>
               <span>the375studio@gmail.com</span>
             </a>
             <a class="contact-row" href="https://instagram.com/the375studio">
-              <span class="contact-icon instagram" aria-hidden="true"></span>
+              <img class="contact-icon" src="assets/icons/instagram_svg.svg" alt="">
               <span>Instagram</span>
               <span>@the375studio</span>
             </a>
@@ -158,18 +158,18 @@
 
           <div class="contact-list">
             <a class="contact-row" href="https://behance.net/the375">
-              <span class="contact-icon behance" aria-hidden="true">Bē</span>
+              <img class="contact-icon" src="assets/icons/Behance.svg" alt="">
               <span>Behance</span>
               <span>behance.net/the375</span>
             </a>
             <a class="contact-row" href="https://threads.net/@the375studio">
-              <span class="contact-icon threads" aria-hidden="true">◎</span>
+              <img class="contact-icon" src="assets/icons/threads_svg.svg" alt="">
               <span>Threads</span>
               <span>@the375studio</span>
             </a>
-            <a class="contact-row" href="#" aria-label="WhatsApp coming soon">
-              <span class="contact-icon whatsApp" aria-hidden="true"></span>
-              <span>WhatsApp</span>
+            <a class="contact-row" href="#" aria-label="What'sUp coming soon">
+              <img class="contact-icon" src="assets/icons/WhatsApp.svg" alt="">
+              <span>What’sUp</span>
               <span>coming soon</span>
             </a>
           </div>
@@ -189,12 +189,26 @@
         </h1>
       </section>
 
+      <section class="view view-lost" data-view="lost" aria-labelledby="lost-title">
+        <div class="lost-content">
+          <p class="lost-code">404</p>
+          <h1 id="lost-title">YOU BROKE ALL RELATIONS.</h1>
+          <div class="life-counter" aria-label="Two lives left">
+            <span class="life is-lost" aria-hidden="true"></span>
+            <span class="life" aria-hidden="true"></span>
+            <span class="life" aria-hidden="true"></span>
+          </div>
+          <p class="lost-text">One life is gone. Two are still blinking.</p>
+          <button class="return-button" type="button" data-route="home">Return and try again</button>
+        </div>
+      </section>
+
       <footer class="site-footer">
         <p>© 2026 THE375. All rights reserved.</p>
         <p>Warsaw, Poland</p>
       </footer>
     </main>
 
-    <script src="script.js?v=6"></script>
+    <script src="script.js?v=11"></script>
   </body>
 </html>
