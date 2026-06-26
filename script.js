@@ -1,5 +1,7 @@
 const views = [...document.querySelectorAll("[data-view]")];
 const navLinks = [...document.querySelectorAll("[data-route]")];
+const routeButtons = [...document.querySelectorAll("button[data-route]")];
+const serviceItems = [...document.querySelectorAll(".service-item")];
 const footer = document.querySelector(".site-footer");
 
 function getRoute() {
@@ -24,7 +26,7 @@ function setRoute(route) {
     }
   });
 
-  footer.hidden = false;
+  footer.hidden = route === "lost";
   resetScroll();
 }
 
@@ -44,6 +46,30 @@ navLinks.forEach((link) => {
   });
 });
 
+routeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const route = button.dataset.route;
+    history.pushState(null, "", `#${route}`);
+    setRoute(route);
+  });
+});
+
 window.addEventListener("popstate", () => setRoute(getRoute()));
 window.addEventListener("hashchange", () => setRoute(getRoute()));
+serviceItems.forEach((item) => {
+  item.addEventListener("toggle", () => {
+    if (!item.open) return;
+    serviceItems.forEach((otherItem) => {
+      if (otherItem !== item) {
+        otherItem.open = false;
+      }
+    });
+  });
+
+  item.addEventListener("mouseleave", () => {
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      item.open = false;
+    }
+  });
+});
 setRoute(getRoute());

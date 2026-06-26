@@ -74,14 +74,11 @@ button {
 }
 
 .language-note {
-  position: absolute;
-  top: 47px;
-  right: 116px;
-  margin: 0;
-  color: var(--accent);
-  font-size: 20px;
-  line-height: 1.18;
-  text-transform: uppercase;
+  display: none;
+}
+
+.language-note-mobile {
+  display: none;
 }
 
 .site-nav {
@@ -154,42 +151,86 @@ button {
 }
 
 .services-list {
-  display: grid;
-  grid-template-columns: 310px 77px minmax(0, 1fr);
-  column-gap: 50px;
-  align-items: baseline;
-  width: 100%;
-  margin-top: -4px;
-  row-gap: 0;
+  width: min(900px, 100%);
+  margin-top: -12px;
 }
 
-.service-name {
+.service-item {
+  border-bottom: 1px solid transparent;
+}
+
+.service-item summary {
+  display: block;
   color: var(--secondary);
   font-size: 64px;
-  line-height: 1.11;
+  line-height: 0.96;
   white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  transition: color 160ms ease;
 }
 
-.service-number {
-  color: var(--accent);
-  font-size: 20px;
-  line-height: 1;
-  transform: translateY(-10px);
+.service-item summary::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 14px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 17px solid var(--accent);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 160ms ease, transform 220ms ease;
 }
 
-.service-text {
-  color: var(--secondary);
-  font-size: 32px;
-  line-height: 0.82;
+.service-item summary::-webkit-details-marker {
+  display: none;
 }
 
-.service-name.is-active {
+.service-item summary::marker {
+  content: "";
+}
+
+.service-item summary:hover,
+.service-item[open] summary {
   color: var(--text);
 }
 
-.service-number.is-active,
-.service-text.is-active {
-  color: var(--accent);
+.service-item summary:hover::after,
+.service-item[open] summary::after {
+  opacity: 1;
+}
+
+.service-item[open] summary::after {
+  transform: translateY(-8px);
+}
+
+.service-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  color: var(--text);
+  font-size: 32px;
+  line-height: 0.94;
+  overflow: hidden;
+  transition: grid-template-rows 220ms ease, padding 220ms ease;
+}
+
+.service-item[open] .service-panel {
+  grid-template-rows: 1fr;
+  padding: 7px 0 18px;
+}
+
+.service-panel p {
+  min-height: 0;
+  max-width: 850px;
+  margin: 0;
+}
+
+.service-panel p::selection,
+.service-item summary::selection {
+  background: var(--accent);
+  color: var(--text);
 }
 
 .project-table {
@@ -260,77 +301,120 @@ button {
   line-height: 1;
 }
 
+.contact-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
 .contact-row:last-child {
   border-bottom: 1px solid var(--line);
 }
 
-.contact-icon {
-  position: relative;
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.view-lost {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
   background: var(--text);
   color: var(--bg);
-  font-size: 13px;
-  font-weight: 700;
+  padding: 36px var(--page-pad);
+}
+
+.view-lost.is-active {
+  display: grid;
+  place-items: center;
+}
+
+.view-lost + .site-footer {
+  display: none;
+}
+
+.lost-content {
+  width: min(100%, 1100px);
+}
+
+.lost-code {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 32px;
   line-height: 1;
 }
 
-.telegram::before {
-  content: "";
-  width: 0;
-  height: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 19px solid var(--bg);
-  transform: rotate(-38deg) translate(1px, -1px);
+.view-lost h1 {
+  max-width: 1060px;
+  margin: 0;
+  font-size: clamp(58px, 8.6vw, 124px);
+  line-height: 0.9;
+  font-weight: 400;
 }
 
-.mail::before {
-  content: "";
-  width: 22px;
-  height: 16px;
-  border: 2px solid var(--bg);
+.life-counter {
+  display: flex;
+  gap: 38px;
+  margin-top: 34px;
 }
 
-.mail::after {
+.life {
+  position: relative;
+  width: 42px;
+  height: 38px;
+  transform: rotate(-45deg);
+  background: var(--accent);
+}
+
+.life::before,
+.life::after {
   content: "";
   position: absolute;
-  width: 16px;
-  height: 16px;
-  border-left: 2px solid var(--bg);
-  border-bottom: 2px solid var(--bg);
-  transform: rotate(-45deg) translate(1px, -4px);
-}
-
-.instagram::before {
-  content: "";
-  width: 22px;
-  height: 22px;
-  border: 2px solid var(--bg);
-  border-radius: 7px;
-}
-
-.instagram::after {
-  content: "";
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border: 2px solid var(--bg);
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
+  background: inherit;
 }
 
-.whats-up::before {
-  content: "";
-  width: 18px;
-  height: 18px;
-  border: 4px solid var(--bg);
-  border-top-color: transparent;
-  border-right-color: transparent;
-  border-radius: 50%;
-  transform: rotate(-34deg);
+.life::before {
+  top: -21px;
+  left: 0;
+}
+
+.life::after {
+  top: 0;
+  left: 21px;
+}
+
+.life.is-lost {
+  background: transparent;
+  border: 3px solid var(--secondary);
+}
+
+.life.is-lost::before,
+.life.is-lost::after {
+  background: var(--text);
+  border: 3px solid var(--secondary);
+}
+
+.lost-text {
+  margin: 30px 0 0;
+  color: var(--secondary);
+  font-size: 32px;
+  line-height: 1;
+}
+
+.return-button {
+  margin-top: 42px;
+  border: 1px solid var(--bg);
+  padding: 14px 18px;
+  background: transparent;
+  color: var(--bg);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.return-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .project-cta {
@@ -392,8 +476,8 @@ button {
 
   .site-shell {
     min-height: 100svh;
-    overflow: auto;
-    padding-bottom: 82px;
+    overflow: visible;
+    padding-bottom: 12px;
   }
 
   body {
@@ -419,9 +503,16 @@ button {
   }
 
   .language-note {
-    position: static;
-    margin-top: 8px;
+    display: none;
+  }
+
+  .language-note-mobile {
+    display: block;
+    margin: 34px 0 0;
+    color: var(--accent);
     font-size: 14px;
+    line-height: 1.18;
+    text-transform: uppercase;
   }
 
   .site-nav {
@@ -450,23 +541,34 @@ button {
   }
 
   .services-list {
-    grid-template-columns: minmax(0, 1fr) 44px;
-    row-gap: 8px;
+    width: 100%;
+    margin-top: 0;
   }
 
-  .service-name {
+  .service-item summary {
     font-size: clamp(42px, 12vw, 64px);
+    line-height: 0.98;
   }
 
-  .service-number {
-    font-size: 16px;
+  .service-item summary::after {
+    margin-left: 9px;
+    border-left-width: 7px;
+    border-right-width: 7px;
+    border-top-width: 12px;
+    transform: translateY(-5px);
   }
 
-  .service-text {
-    grid-column: 1 / -1;
-    margin-bottom: 8px;
+  .service-item[open] summary::after {
+    transform: translateY(-5px);
+  }
+
+  .service-panel {
     font-size: 23px;
     line-height: 0.9;
+  }
+
+  .service-item[open] .service-panel {
+    padding: 8px 0 18px;
   }
 
   .project-table {
@@ -486,13 +588,17 @@ button {
 
   .contacts-layout {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 0;
   }
 
   .contact-row {
     grid-template-columns: 38px minmax(128px, 0.75fr) minmax(0, 1fr);
     min-height: 44px;
     font-size: clamp(20px, 6vw, 34px);
+  }
+
+  .contact-list + .contact-list .contact-row:first-child {
+    border-top: 0;
   }
 
   .contact-icon {
@@ -509,7 +615,8 @@ button {
   }
 
   .site-footer {
-    position: fixed;
+    position: static;
+    margin-top: 72px;
     font-size: 14px;
   }
 }
@@ -536,5 +643,59 @@ button {
     align-items: start;
     flex-direction: column;
     gap: 8px;
+  }
+}
+
+.view-lost {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow: auto;
+  margin-top: 0;
+}
+
+.view-lost.is-active {
+  display: grid;
+}
+
+@media (max-width: 920px) {
+  .view-lost {
+    padding: 24px var(--page-pad);
+  }
+
+  .view-lost h1 {
+    font-size: clamp(48px, 14vw, 72px);
+  }
+
+  .lost-code {
+    font-size: 30px;
+  }
+
+  .life-counter {
+    gap: 30px;
+    margin-top: 28px;
+  }
+
+  .life {
+    width: 34px;
+    height: 31px;
+  }
+
+  .life::before,
+  .life::after {
+    width: 34px;
+    height: 34px;
+  }
+
+  .life::before {
+    top: -17px;
+  }
+
+  .life::after {
+    left: 17px;
+  }
+
+  .lost-text {
+    font-size: 28px;
   }
 }
